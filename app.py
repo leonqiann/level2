@@ -30,13 +30,31 @@ def query_db(query, args=(), one=False):
 
 @app.route("/")
 def home():
-   
-   db = get_db()
-   cursor = db.cursor
-   sql = "SELECT * FROM songfeb11;"
-   cursor.execute(sql)
-   results = cursor.fetchall()
+   #home page
+
+   sql = """SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams
+                FROM songfeb11
+                LEFT JOIN album on songfeb11.album_id = album.id
+                LEFT JOIN artist ON songfeb11.artist_id = artist.id
+                LEFT JOIN featured ON songfeb11.featured_id = featured.id
+                LEFT JOIN year ON songfeb11.year_id = year.id
+                LEFT JOIN genre ON songfeb11.genre_id = genre.id;"""
+   results = query_db(sql)
    return str(results)
    
+@app.route("/song/<int:id>")
+def song (id):
+    #js one bike based on id 
+    sql ="""SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams
+                FROM songfeb11
+                LEFT JOIN album on songfeb11.album_id = album.id
+                LEFT JOIN artist ON songfeb11.artist_id = artist.id
+                LEFT JOIN featured ON songfeb11.featured_id = featured.id
+                LEFT JOIN year ON songfeb11.year_id = year.id
+                LEFT JOIN genre ON songfeb11.genre_id = genre.id
+                WHERE songfeb11.id = ?""" 
+    result = query_db(sql,(id,),True)
+    return str(result)
+
 if __name__ == "__main__":
    app.run(debug=True)
