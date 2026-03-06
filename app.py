@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, render_template
 import sqlite3 
 
 
@@ -40,7 +40,7 @@ def home():
                 LEFT JOIN year ON songfeb11.year_id = year.id
                 LEFT JOIN genre ON songfeb11.genre_id = genre.id;"""
    results = query_db(sql)
-   return str(results)
+   return render_template("home.html", results=results)
    
 @app.route("/song/<int:id>")
 def song (id):
