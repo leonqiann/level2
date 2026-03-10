@@ -32,7 +32,7 @@ def query_db(query, args=(), one=False):
 def home():
    #home page
 
-   sql = """SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams
+   sql = """SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams, album_cover
                 FROM songfeb11
                 LEFT JOIN album on songfeb11.album_id = album.id
                 LEFT JOIN artist ON songfeb11.artist_id = artist.id
@@ -44,8 +44,8 @@ def home():
    
 @app.route("/song/<int:id>")
 def song (id):
-    #js one bike based on id 
-    sql ="""SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams
+    #js one song based on id 
+    sql ="""SELECT track, artist_name, featured_name, album_name, publication_year, genre_name, duration, streams, album_cover
                 FROM songfeb11
                 LEFT JOIN album on songfeb11.album_id = album.id
                 LEFT JOIN artist ON songfeb11.artist_id = artist.id

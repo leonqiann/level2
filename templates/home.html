@@ -2,12 +2,12 @@
 {% block body %}
 <!--home page-->
 <!--3 column grid -->
-<div class="three-column">
+<div class="five-column">
     {% for song in results %}
     <div class="w3-card-4">
         <!--the name then the image-->
         <h1>{{ song[0] }} {{ song[1] }} {{ song[3]}}</h1>
-        <img src="{{ song[3] }}" alt="{{ song[2] }}">
+        <img src="{{ song[8] }}" alt="{{ song[0] }}">
     </div>
     {% endfor %}
 </div>
