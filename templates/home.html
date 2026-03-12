@@ -4,11 +4,13 @@
 <!--3 column grid -->
 <div class="five-column">
     {% for song in results %}
+    <a href="{{ url_for('song', id=song[0])}}">
     <div class="w3-card-4">
         <!--the name then the image-->
-        <h1>{{ song[0] }} {{ song[1] }} {{ song[3]}}</h1>
+        <h1>{{ song[1] }} {{ song[2] }} {{ song[4]}}</h1>
         <img src="{{ song[8] }}" alt="{{ song[0] }}">
     </div>
+</a>
     {% endfor %}
 </div>
 
